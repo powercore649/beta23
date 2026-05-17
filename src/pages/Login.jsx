@@ -30,8 +30,55 @@ export default function Login() {
   }, [location, navigate]);
 
   return (
-    <div className="login-body animate-route-enter">
-      <div className="login-card glass-panel" style={{ padding: '35px 40px' }}>
+    <div
+      className="login-body animate-route-enter"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'radial-gradient(circle at top, #1a1f35 0%, #0d0f18 70%)',
+        color: 'white',
+        textAlign: 'center',
+        padding: '20px'
+      }}
+    >
+
+      {/* Title */}
+      <h1
+        style={{
+          fontSize: '3rem',
+          fontWeight: '800',
+          marginBottom: '10px',
+          background: 'linear-gradient(135deg, #00A8FC, #5865F2)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          filter: 'drop-shadow(0 0 12px rgba(88, 101, 242, 0.5))'
+        }}
+      >
+        zyntra
+      </h1>
+
+      <p style={{ opacity: 0.8, marginBottom: '40px', fontSize: '1.1rem' }}>
+        Premium Guild Management & Automation
+      </p>
+
+      {/* Card */}
+      <div
+        className="login-card glass-panel"
+        style={{
+          width: '100%',
+          maxWidth: '420px',
+          padding: '35px 40px',
+          borderRadius: '18px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(12px)',
+          boxShadow: '0 0 40px rgba(88, 101, 242, 0.25)',
+          animation: 'cardPop 0.6s ease-out forwards'
+        }}
+      >
 
         {/* Logo */}
         <div
@@ -65,23 +112,6 @@ export default function Login() {
           </span>
         </div>
 
-        {/* Title */}
-        <h2
-          className="brand-text-glow"
-          style={{
-            margin: 0,
-            paddingBottom: '6px',
-            fontSize: '1.9rem',
-            letterSpacing: '0.5px'
-          }}
-        >
-          zyntra
-        </h2>
-
-        <p style={{ marginTop: '4px', opacity: 0.85 }}>
-          Premium Guild Management & Automation
-        </p>
-
         {/* Login Button / Status */}
         {!status ? (
           <a
@@ -94,11 +124,17 @@ export default function Login() {
               fontSize: '1.05rem',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '10px'
+              gap: '10px',
+              background: '#5865F2',
+              borderRadius: '10px',
+              color: 'white',
+              fontWeight: '600',
+              boxShadow: '0 0 20px rgba(88, 101, 242, 0.4)',
+              transition: '0.2s'
             }}
           >
             <i className="fa-brands fa-discord"></i>
-            Login to zyntra with Discord
+            Login with Discord
           </a>
         ) : (
           <div id="login-status" style={{ marginTop: '18px' }}>
