@@ -14,54 +14,106 @@ export default function Login() {
     if (token) {
       localStorage.setItem('zenith_token', token);
       localStorage.removeItem('zenith_guild_id');
-      setStatus({ type: 'success', text: 'Authentication successful! Redirecting..' });
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 1000);
+
+      setStatus({
+        type: 'success',
+        text: 'Authentication successful! Redirecting..'
+      });
+
+      setTimeout(() => navigate('/dashboard'), 1000);
     } else if (error) {
-      setStatus({ type: 'error', text: `Authentication Failed: ${error}` });
+      setStatus({
+        type: 'error',
+        text: `Authentication Failed: ${error}`
+      });
     }
   }, [location, navigate]);
 
   return (
     <div className="login-body animate-route-enter">
-      <div className="login-card glass-panel">
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '80px',
-          height: '80px',
-          margin: '0 auto 20px auto',
-          background: 'rgba(88, 101, 242, 0.1)',
-          border: '1px solid rgba(88, 101, 242, 0.3)',
-          borderRadius: '24px',
-          boxShadow: '0 0 30px rgba(88, 101, 242, 0.2)'
-        }}>
-          <span style={{ 
-            fontSize: '3.5rem', 
-            fontWeight: '900', 
-            fontFamily: "'Outfit', sans-serif",
-            lineHeight: 1,
-            background: 'linear-gradient(135deg, #00A8FC, #5865F2)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            filter: 'drop-shadow(0 0 10px rgba(88, 101, 242, 0.5))'
-          }}>
+      <div className="login-card glass-panel" style={{ padding: '35px 40px' }}>
+
+        {/* Logo */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '90px',
+            height: '90px',
+            margin: '0 auto 22px auto',
+            background: 'rgba(88, 101, 242, 0.12)',
+            border: '1px solid rgba(88, 101, 242, 0.35)',
+            borderRadius: '26px',
+            boxShadow: '0 0 35px rgba(88, 101, 242, 0.25)',
+            backdropFilter: 'blur(6px)'
+          }}
+        >
+          <span
+            style={{
+              fontSize: '3.8rem',
+              fontWeight: '900',
+              fontFamily: "'Outfit', sans-serif",
+              lineHeight: 1,
+              background: 'linear-gradient(135deg, #00A8FC, #5865F2)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0 0 12px rgba(88, 101, 242, 0.55))'
+            }}
+          >
             Z
           </span>
         </div>
-        <h2 className="brand-text-glow" style={{ margin: 0, paddingBottom: '5px' }}>zyntra</h2>
-        <p>Premium Guild Management & Automation</p>
-        
+
+        {/* Title */}
+        <h2
+          className="brand-text-glow"
+          style={{
+            margin: 0,
+            paddingBottom: '6px',
+            fontSize: '1.9rem',
+            letterSpacing: '0.5px'
+          }}
+        >
+          zyntra
+        </h2>
+
+        <p style={{ marginTop: '4px', opacity: 0.85 }}>
+          Premium Guild Management & Automation
+        </p>
+
+        {/* Login Button / Status */}
         {!status ? (
-          <a href="/api/auth/login" className="btn-discord" style={{ textDecoration: 'none' }}>
-            <i className="fa-brands fa-discord"></i> Login to zyntra with Discord
+          <a
+            href="/api/auth/login"
+            className="btn-discord"
+            style={{
+              textDecoration: 'none',
+              marginTop: '18px',
+              padding: '12px 20px',
+              fontSize: '1.05rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px'
+            }}
+          >
+            <i className="fa-brands fa-discord"></i>
+            Login to zyntra with Discord
           </a>
         ) : (
-          <div id="login-status">
-            <span style={{ color: status.type === 'success' ? '#4ADE80' : 'red' }}>
-              {status.type === 'error' && <i className="fa-solid fa-circle-exclamation" style={{ marginRight: '8px' }}></i>}
+          <div id="login-status" style={{ marginTop: '18px' }}>
+            <span
+              style={{
+                color: status.type === 'success' ? '#4ADE80' : '#FF4D4D',
+                fontWeight: 600,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}
+            >
+              {status.type === 'error' && (
+                <i className="fa-solid fa-circle-exclamation"></i>
+              )}
               {status.text}
             </span>
           </div>
@@ -70,4 +122,3 @@ export default function Login() {
     </div>
   );
 }
-
